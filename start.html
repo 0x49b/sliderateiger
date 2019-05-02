@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Slider@EigerV1</title>
+    <link rel="stylesheet" type="text/css" href="./assets/style.css">
+</head>
+<body>
+
+    <div class="loading-nag-container">
+        <span id="loading-nag-title" class="loading-nag-title"></span><br/>
+        <span id="loading-nag-text" class="loading-nag-text"></span><br/>
+        <span id="refresh-rate" class="refresh-rate-nag"></span>
+    </div>
+
+    <div class="night-shift-shutter" id="night-shift-shutter"></div>
+
+    <script src="assets/jquery.js" charset="utf-8"></script>
+    <script src="assets/rotator/rotator.config.js" type="text/javascript"></script>
+    <script src="assets/rotator/rotator.class.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $('body').ready(function () {
+
+        // Anlegen von versteckten iFrames für jeden Link. Somit werden alle Daten vorgeladen
+        url.forEach(createiFrame);
+
+        function createiFrame(item,index) {
+            $('body').append($('<iframe class="link-container" id="frame' + index + '" src="' + item + '">Browser does not support iframes.</iframe>'));
+            $('#frame' + index).hide();
+            console.log('Frame with url ' + item + ' created');
+        }
+
+
+        var rotator = new Rotator(0,url.length,url,frame_intervall,log_to_console,nightshift_start,nightshift_end);
+        rotator.runner();
+    });
+</script>
+</body>
+</html>

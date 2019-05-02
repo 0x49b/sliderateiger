@@ -1,7 +1,10 @@
-/**
- *  Konfiguration für den Slider@Eiger
- *  Darstellung von beliebigem Webinhalt auf einem alten BLM Monitor
- */
+## Slider@Eiger
+
+An Application to Cycle trough different Websites
+
+### Config
+
+´´´ js
 
  /* Begrüssungstext, HTML möglich */
  var loading_nag_title = 'Monitoring KIBWE';
@@ -10,7 +13,7 @@
  var loading_nag_text = 'Lade Applikation ...';
 
  /* Intervall der Frames in Minuten */
- var frame_intervall = 0.15;
+ var frame_intervall = 0.15  ;
 
  /* Bildwechselzeiten anzeigen im Startbildschirm*/
  var show_refresh_rate = true;
@@ -31,3 +34,5 @@
 
  /* Log in die JS Konsole einschalten */
  var log_to_console = false;
+´´´
+

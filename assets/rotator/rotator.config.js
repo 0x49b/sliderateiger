@@ -4,27 +4,28 @@
  */
 
  /* Begrüssungstext, HTML möglich */
- var loading_nag_title = 'Fachteam IT Kundeninformation';
+ var loading_nag_title = 'Monitoring KIBWE';
 
  /* Ladetext, HTML möglich */
  var loading_nag_text = 'Lade Applikation ...';
 
  /* Intervall der Frames in Minuten */
- var frame_intervall = 0.75;
+ var frame_intervall = 0.15  ;//0.75;
 
  /* Bildwechselzeiten anzeigen im Startbildschirm*/
  var show_refresh_rate = true;
 
  /*  URL welche auf dem Monitor angezeigt werden sollen  */
- var url = ['https://ci.sbb.ch/view/ki/view/displayserver/view/Monitor_2.x/',
- 'http://smi.sbb.ch/nagvis/frontend/nagvis-js/index.php?mod=Map&show=kundeninformation',
+ var url = [
+ 'https://ci.sbb.ch/view/ki/view/displayserver/view/Monitor_2.x/',
+ 'https://smi.sbb.ch/prod/smi/index.htm',
  'http://espace.sbb.ch/teams/57/Betrieb/Pikett_KI/landing-page/ext/on_duty.html',
- 'https://contentplayer-web-intranet-prod.app.ose.sbb-cloud.net/sbb-intra#!/cpweb-detail/9739',
- './wetter/index.html'];
+ 'https://aare.guru/#bern'];
 
  /* Nachtabschaltung, schaltet den Bildschirm schwarz */
- var nightshift_start = '11:08';
- var nightshift_end = '11:07';
+ var nightshift_enabled = true; 
+ var nightshift_start = '10:53';
+ var nightshift_end = '10:54';
 
  /* Log in die JS Konsole einschalten */
  var log_to_console = false;

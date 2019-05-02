@@ -4,7 +4,7 @@
 
 
  class Rotator {
-    constructor(frame,numUrl,url,intervall,logToConsole,nightshiftStart,nightshiftEnd) {
+    constructor(frame,numUrl,url,intervall,logToConsole,nightshiftStart,nightshiftEnd, nightshiftEnabled) {
         this.frame = frame;
         this.numUrl = numUrl;
         this.intervall = intervall * 1000 * 60;
@@ -12,6 +12,7 @@
         this.logConsole = logToConsole;
         this.nightshiftStart = nightshiftStart;
         this.nightshiftEnd = nightshiftEnd;
+        this.nightshiftEnabled = nightshiftEnabled;
 
 
         this.readConfig();
@@ -65,31 +66,26 @@
         var cTime = cHour + ':' + cMin;
         var shutter = document.getElementById('night-shift-shutter');
 
-        this.logToConsole('Act Time: ' + cTime + ' | NightShift Start: ' + this.nightshiftStart + ' | NightShift End:  ' + this.nightshiftEnd + ' | DateObject: ' + dateCheck);
+        var nowTime = new Date(1901,0,1,dateCheck.getHours(),dateCheck.getMinutes());
 
-        if (Date.parse('01/01/2011 ' + this.nightshiftEnd) < Date.parse('01/01/2011' + cTime) < Date.parse('01/01/2011 ' + this.nightshiftStart)) {
-            shutter.style.display = "none";
-            this.logToConsole('Nightshift off');
-        } else {
+        var endSplit = this.nightshiftEnd.split(":");
+        var endTime = new Date(1901,0, 1, endSplit[0],  endSplit[1]);
+
+        var startSplit = this.nightshiftStart.split(":");
+        var startTime = new Date(1901,0, 1, startSplit[0],  startSplit[1]);
+
+        this.logToConsole('NightShift enabled: '+ this.nightshiftEnabled +' Act Time: ' + cTime + ' | NightShift Start: ' + this.nightshiftStart + ' | NightShift End:  ' + this.nightshiftEnd + ' | DateObject: ' + dateCheck);
+
+        if(  startTime <= nowTime && endTime >= nowTime){
             shutter.style.display = "block";
             shutter.style.backgroundColor = "black";
-            this.logToConsole('NightShift on');
-        }
+            this.logToConsole('Nightshift on');
 
-        if (Date.parse('01/01/2011 ' + this.nightshiftEnd) >= Date.parse('01/01/2011' + cTime)) {
-            this.logToConsole('end >= cTime true')
         } else {
-            this.logToConsole('end >= cTime false')
+            shutter.style.display = "none";
+            shutter.style.backgroundColor = "none";
+            this.logToConsole('NightShift off');
         }
-
-        if (Date.parse('01/01/2011 ' + cTime >= Date.parse('01/01/2011 ' + this.nightshiftStart) )) {
-            this.logToConsole('START >= cTime true')
-        } else {
-            this.logToConsole('START >= cTime false')
-        }
-
-
-
     }
 
     addZeroToTime(time) {
